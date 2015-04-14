@@ -31,24 +31,26 @@ int free_text(Text *pt){
 	return 0;
 }
 
-char **init_pp(void){
+char** init_pp(void){
 	int i;
 	char **p1;
-	p1=(char**)malloc(sizeof(char*));
+	p1=(char **)malloc(sizeof(char*)*100);
 	for(i=0;i<100;i++)
-		p1[i]=(char *)malloc(sizeof(char));
+		(*(p1+i))=(char *)malloc(sizeof(char));
 	return p1;
-	//p1->*p1+i->**p1
+}
+
+int init_pp2(char **p1){
+	int i;
+	for(i=0;i<100;i++)
+		(*(p1+i))=(char *)malloc(sizeof(char));
+	return 0;
 }
 
 int free_pp(char **pps){
-	int i=0;
-	printf("free pps\n");
-	free(pps);
-	printf("free *pps\n");
-	/*for(;i<100;i++)
-		free((char*)pps[i]);*/
-	printf("free ok\n");
+	int j=0;
+	for(j=0;j<100;j++)
+		free((*(pps+j)));
 	return 0;
 }
 
@@ -61,10 +63,11 @@ int main(void){
 	free_text(ptt);
 	char **p=init_pp();
 	int i=0;
-	for(;i<3;i++)
-		strcpy(*(p+i),test("fffg"));
-	for(i=0;i<3;i++)
-		printf("\t%s\n",*(p+i));
+	int jp=10;
+	for(;i<jp;i++)
+		strcpy(p[i],test("fffg"));
+	for(i=0;i<jp;i++)
+		printf("\t%s\n",p[i]);
 
 	free_pp(p);
 	return 0;
