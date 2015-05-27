@@ -65,7 +65,7 @@ int main(void){
 	int i=0;
 	int jp=10;
 	for(;i<jp;i++)
-		strcpy(p[i],test("fffg"));
+		strcpy(p[i],test("fffgaaaaaaaaaaaaa"));
 	for(i=0;i<jp;i++)
 		printf("\t%s\n",p[i]);
 
